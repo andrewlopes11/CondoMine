@@ -17,13 +17,17 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: '127.0.0.1'
+  port: '5432'
+  
 
 development:
   <<: *default
-  database: CondoMine_development
+  database: CondoMineDev
+  username: postgres
+  password: ''
+  
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -81,6 +85,4 @@ test:
 #
 production:
   <<: *default
-  database: CondoMine_production
-  username: CondoMine
-  password: <%= ENV["CONDOMINE_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
