@@ -9,9 +9,6 @@ gem "rails", "~> 7.0.2", "= 7.0.2.2"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-# Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
-
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
@@ -53,6 +50,10 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
 
+group :actions do
+  gem 'pg'
+  gem 'activerecord-postgresql-adapter'
+end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
