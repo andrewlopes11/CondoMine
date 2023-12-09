@@ -18,15 +18,16 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: '127.0.0.1'
-  port: '5432'
+ 
   
 
 development:
   <<: *default
   database: CondoMineDev
   username: postgres
-  password: ''
+  password: '0711'
+  host: '127.0.0.1'
+  port: '5432'
   
 
   # The specified database role being used to connect to postgres.
