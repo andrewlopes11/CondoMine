@@ -54,4 +54,4 @@ jobs:
           WITH_COVERAGE: true
           DISABLE_SPRING: 1
         run: |
-          bundle exec rails db:prepare
+          bundle exec rails test
