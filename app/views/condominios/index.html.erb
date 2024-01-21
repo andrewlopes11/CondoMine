@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Condominios</h1>
+
+<div id="condominios">
+  <% @condominios.each do |condominio| %>
+    <%= render condominio %>
+    <p>
+      <%= link_to "Show this condominio", condominio %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New condominio", new_condominio_path %>

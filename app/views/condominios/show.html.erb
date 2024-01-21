@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @condominio %>
+
+<div>
+  <%= link_to "Edit this condominio", edit_condominio_path(@condominio) %> |
+  <%= link_to "Back to condominios", condominios_path %>
+
+  <%= button_to "Destroy this condominio", @condominio, method: :delete %>
+</div>
