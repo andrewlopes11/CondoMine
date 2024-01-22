@@ -4,13 +4,15 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.1"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.2", "= 7.0.2.2"
+gem "rails", "= 7.0.2.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-# Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
+gem "devise"
+
+# Use sqlite3 as the database for Active Record
+gem "sqlite3", "~> 1.4"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -37,7 +39,7 @@ gem "jbuilder"
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data"
+gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -66,10 +68,21 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem 'database_cleaner'
-  gem 'cucumber-rails', require: false
-  gem "rspec", require: false
-  gem "capybara"
+  gem 'capybara', '>= 3.26'
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'cucumber',"4.1.0"
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
+  gem 'rspec'
+end
+
+group :actions do
+  gem 'pg'
+  gem 'activerecord-postgresql-adapter'
+end
+
+group :production do
+  gem 'pg'
+  gem 'activerecord-postgresql-adapter'
 end
