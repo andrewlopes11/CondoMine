@@ -1,0 +1,2 @@
+class Condomino < ApplicationRecord
+end

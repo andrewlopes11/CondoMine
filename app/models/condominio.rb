@@ -1,2 +1,0 @@
-class Condominio < ApplicationRecord
-end
