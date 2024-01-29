@@ -1,0 +1,16 @@
+<%= link_to "Back to home", "/" %>
+
+<p style="color: green"><%= notice %></p>
+
+<h1>Condominos</h1>
+
+<div id="condominos">
+  <% @condominos.each do |condomino| %>
+    <%= render condomino %>
+    <p>
+      <%= link_to "Show this condomino", condomino %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New condomino", new_condomino_path %>
