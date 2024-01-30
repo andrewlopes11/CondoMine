@@ -1,0 +1,41 @@
+<%= form_with(model: reserva) do |form| %>
+  <% if reserva.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(reserva.errors.count, "error") %> prohibited this reserva from being saved:</h2>
+
+      <ul>
+        <% reserva.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.date_select :data_ini,
+                         start_year: Date.current.year,
+                         end_year: 2100,
+                         default: Date.current + 3.days %>
+
+    <%= form.date_select :data_fim,
+                         start_year: Date.current.year,
+                         end_year: 2100,
+                         default: Date.current + 60.days %>
+  </div>
+  <div class="label">
+    <%=  form.label :condomino_id %>
+    <%= form.collection_select :condomino_id, Reserva.all, :id, :nome, prompt: "Selecione um Condômino" %>
+  </div>
+
+  <div class="label">
+    <%=  form.label :ambiente_id %>
+    <%= form.collection_select :ambiente_id, Reserva.all, :id, :nome, prompt: "Selecione um Ambiente" %>
+  </div>
+
+  <div>
+    <%= form.label :status %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
