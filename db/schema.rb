@@ -10,23 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_29_011214) do
-  create_table "condominios", force: :cascade do |t|
-    t.string "nome"
-    t.string "cnpj"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+ActiveRecord::Schema[7.0].define(version: 2024_01_27_001338) do
   create_table "condominos", force: :cascade do |t|
     t.string "nome"
     t.string "cpf"
     t.string "contato"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "reservas", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
