@@ -30,4 +30,4 @@
 /config/database.yml
 
 /db/schema.rb
-
+/db/development.sqlite3
