@@ -3,11 +3,11 @@
 <h2>Detalhes da Reserva</h2>
 
 <div class="details">
-  <p><span class="label">Data: </span><span class="value"><%= @reserva.data_ini.present? :"Data de inicio nao definida" %></span></p>
+  <p><span class="label">Data de Início da Reserva: </span><span class="value"><%= @reserva.data_ini.present? ? @reserva.data_ini : "Data de inicio nao definida" %></span></p>
 </div>
 
 <div class="details">
-  <p><span class="label">Data: </span><span class="value"><%= @reserva.data_fim.present? :"Data do fim nao definida" %></span></p>
+  <p><span class="label">Data de Final da Reserva : </span><span class="value"><%= @reserva.data_fim.present? ? @reserva.data_fim.strftime("%d/%m/%Y") : "Data do fim nao definida" %></span></p>
 </div>
 
 <div class="details">
