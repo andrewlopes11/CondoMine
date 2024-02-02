@@ -1,0 +1,29 @@
+<p style="color: green"><%= notice %></p>
+
+<h2>Detalhes da Reserva</h2>
+
+<div class="details">
+  <p><span class="label">Data: </span><span class="value"><%= @reserva.data_ini.present? :"Data de inicio nao definida" %></span></p>
+</div>
+
+<div class="details">
+  <p><span class="label">Data: </span><span class="value"><%= @reserva.data_fim.present? :"Data do fim nao definida" %></span></p>
+</div>
+
+<div class="details">
+  <p><span class="label">Ambiente: </span><span class="value"><%= @reserva.ambiente.present? :"Ambiente nao definido" %></span></p>
+</div>
+
+<div class="details">
+  <p><span class="label">Condômino: </span><span class="value"><%= @reserva.condomino_id.present? :"Condomino nao definido" %></span></p>
+</div>
+
+
+<%= render @reserva %>
+
+<div>
+  <%= link_to "Editar esta reserva", edit_reserva_path(@reserva) %> |
+  <%= link_to "Voltar para reservas", reservas_path %>
+
+  <%= button_to "Apagar esta reserva", @reserva, method: :delete %>
+</div>
