@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_27_001338) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_31_203035) do
+  create_table "ambientes", force: :cascade do |t|
+    t.string "nome"
+    t.string "tipo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "condominios", force: :cascade do |t|
+    t.string "nome"
+    t.string "cnpj"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "condominos", force: :cascade do |t|
     t.string "nome"
     t.string "cpf"
@@ -19,4 +33,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_27_001338) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reservas", force: :cascade do |t|
+    t.integer "ambiente_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ambiente_id"], name: "index_reservas_on_ambiente_id"
+  end
+
+  add_foreign_key "reservas", "ambientes"
 end
