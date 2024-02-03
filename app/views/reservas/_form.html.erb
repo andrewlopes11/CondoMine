@@ -11,13 +11,23 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :data_ini, "Data de Início da Reserva" %>
+    <%= form.label :data_ini, "Data Inicial da Reserva" %>
     <%= form.date_select :data_ini, start_year: Date.current.year, end_year: 2100, default: Date.current + 3.days %>
   </div>
 
   <div class="field">
-<%= form.label :data_fim, "Data do Fim da Reserva" %>
+    <%= form.label :data_fim, "Data Final da Reserva" %>
     <%= form.date_select :data_fim, start_year: Date.current.year, end_year: 2100, default: Date.current + 60.days %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hora_ini, "Hora Inicial da Reserva" %>
+    <%= form.time_select :hora_ini %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hora_fim, "Hora Final da Reserva" %>
+    <%= form.time_select :hora_fim %>
   </div>
 
   <div class="field">
@@ -28,11 +38,6 @@
   <div class="field">
     <%= form.label :ambiente_id %>
     <%= form.collection_select :ambiente_id, Ambiente.all, :id, :nome, prompt: "Selecione um Ambiente" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.select :status, Reserva.statuses.keys.map { |s| [s.humanize, s] } %>
   </div>
 
   <div class="actions">
