@@ -1,8 +1,7 @@
-<%= form_with(model: reserva) do |form| %>
+<%= form_with(model: reserva, class: 'reserva-form') do |form| %>
   <% if reserva.errors.any? %>
-    <div style="color: red">
+    <div class="error-message">
       <h2><%= pluralize(reserva.errors.count, "error") %> prohibited this reserva from being saved:</h2>
-
       <ul>
         <% reserva.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,32 +9,33 @@
       </ul>
     </div>
   <% end %>
+
   <div class="field">
-    <%= form.date_select :data_ini,
-                         start_year: Date.current.year,
-                         end_year: 2100,
-                         default: Date.current + 3.days %>
-
-    <%= form.date_select :data_fim,
-                         start_year: Date.current.year,
-                         end_year: 2100,
-                         default: Date.current + 60.days %>
-  </div>
-  <div class="label">
-    <%=  form.label :condomino_id %>
-    <%= form.collection_select :condomino_id, Reserva.all, :id, :nome, prompt: "Selecione um Condômino" %>
+    <%= form.label :data_ini, "Data de Início da Reserva" %>
+    <%= form.date_select :data_ini, start_year: Date.current.year, end_year: 2100, default: Date.current + 3.days %>
   </div>
 
-  <div class="label">
-    <%=  form.label :ambiente_id %>
-    <%= form.collection_select :ambiente_id, Reserva.all, :id, :nome, prompt: "Selecione um Ambiente" %>
+  <div class="field">
+<%= form.label :data_fim, "Data do Fim da Reserva" %>
+    <%= form.date_select :data_fim, start_year: Date.current.year, end_year: 2100, default: Date.current + 60.days %>
   </div>
 
-  <div>
+  <div class="field">
+    <%= form.label :condomino_id %>
+    <%= form.collection_select :condomino_id, Condomino.all, :id, :nome, prompt: "Selecione um Condômino" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ambiente_id %>
+    <%= form.collection_select :ambiente_id, Ambiente.all, :id, :nome, prompt: "Selecione um Ambiente" %>
+  </div>
+
+  <div class="field">
     <%= form.label :status %>
+    <%= form.select :status, Reserva.statuses.keys.map { |s| [s.humanize, s] } %>
   </div>
 
-  <div>
+  <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>

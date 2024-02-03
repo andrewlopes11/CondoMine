@@ -21,6 +21,7 @@ class ReservasController < ApplicationController
 
   # POST /reservas or /reservas.json
   def create
+    puts params.inspect
     @reserva = Reserva.new(reserva_params)
 
     respond_to do |format|
@@ -65,6 +66,6 @@ class ReservasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def reserva_params
-      params.require(:reservas).permit(:data_ini, :data_fim, :condomino_id, :ambiente_id, :status)
+      params.require(:reserva).permit(:data_ini, :data_fim, :condomino_id, :ambiente_id, :status)
     end
 end
