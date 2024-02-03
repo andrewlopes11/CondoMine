@@ -3,7 +3,7 @@
 <h2>Detalhes da Reserva</h2>
 
 <div class="details">
-  <p><span class="label">Data de Início da Reserva: </span><span class="value"><%= @reserva.data_ini.present? ? @reserva.data_ini : "Data de inicio nao definida" %></span></p>
+  <p><span class="label">Data de Início da Reserva: </span><span class="value"><%= @reserva.data_ini.present? ? @reserva.data_ini.strftime("%d/%m/%Y") : "Data de inicio nao definida" %></span></p>
 </div>
 
 <div class="details">
@@ -11,13 +11,12 @@
 </div>
 
 <div class="details">
-  <p><span class="label">Ambiente: </span><span class="value"><%= @reserva.ambiente.present? :"Ambiente nao definido" %></span></p>
+  <p><span class="label">Ambiente: </span><span class="value"><%= @reserva.ambiente.present? ? @reserva.ambiente.nome : "Ambiente nao definido" %></span></p>
 </div>
 
 <div class="details">
-  <p><span class="label">Condômino: </span><span class="value"><%= @reserva.condomino_id.present? :"Condomino nao definido" %></span></p>
+  <p><span class="label">Condômino: </span><span class="value"><%= @reserva.condomino.present? ? @reserva.condomino.nome : "Condomino nao definido" %></span></p>
 </div>
-
 
 <%= render @reserva %>
 
@@ -25,5 +24,5 @@
   <%= link_to "Editar esta reserva", edit_reserva_path(@reserva) %> |
   <%= link_to "Voltar para reservas", reservas_path %>
 
-  <%= button_to "Apagar esta reserva", @reserva, method: :delete %>
+  <%= button_to "Apagar esta reserva", @reserva, method: :delete, data: { confirm: "Tem certeza?" } %>
 </div>

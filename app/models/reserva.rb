@@ -21,14 +21,12 @@ class Reserva < ApplicationRecord
   def verificar_disponibilidade_do_ambiente
     return unless data_ini.present? && data_fim.present?
 
-    # Verifica se existe alguma reserva que conflite com o intervalo de datas da nova reserva
-    sobreposicao = Reserva.where(ambiente_id: ambiente_id)
-                          .where.not(id: id)
-                          .where.not('data_ini > :nova_data_fim OR data_fim < :nova_data_ini', nova_data_ini: data_ini, nova_data_fim: data_fim)
-                          .exists?
-
-    if sobreposicao
-      errors.add(:base, "O ambiente já está reservado para as datas selecionadas")
+    Reserva.where(ambiente_id: ambiente_id).where.not(id: id).find_each do |reserva_existente|
+      # Verifica se a nova reserva se sobrepõe a uma reserva existente
+      if reserva_existente.data_ini <= data_fim && reserva_existente.data_fim >= data_ini
+        errors.add(:base, "O ambiente já está reservado para as datas selecionadas")
+        break # Sai do loop assim que uma sobreposição é encontrada
+      end
     end
   end
 end
