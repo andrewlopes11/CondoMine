@@ -31,6 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_02_191656) do
     t.date "data_fim"
     t.time "hora_ini"
     t.time "hora_fim"
+    t.string "status"
     t.integer "condomino_id", null: false
     t.integer "ambiente_id", null: false
     t.datetime "created_at", null: false
