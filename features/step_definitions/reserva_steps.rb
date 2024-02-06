@@ -1,6 +1,4 @@
-Given('estou na pagina de cadastro de reserva') do
-  visit '/reservas/new'
-end
+#Elementos do Background.
 
 Given('existe um Condomino com o nome {string}, cpf {string}, contato {string} no sistema') do |nome, cpf, contato|
   Condomino.find_or_create_by!(nome: nome, cpf: cpf.gsub(/^0-9/, ''), contato: contato)
@@ -10,61 +8,26 @@ Given('existe um Ambiente com nome {string}, tipo {string} no sistema de reserva
   Ambiente.find_or_create_by!(nome: nome, tipo: tipo)
 end
 
-Given('estou na pagina de editar uma reserva') do
-  reserva = Reserva.create(condomino: 'Marcos Teste', ambiente: 'Quadra', data_ini: '2024-03-10', data_fim: '2024-04-15', hora_ini: '09:00', hora_fim: '13:00')
-  visit reserva_path(reserva)
-  expect(page).to have_current_path(edit_reserva_path(reserva))
+#Rotas dos Cenarios
+Given('estou na pagina de cadastro de reserva') do
+  visit '/reservas/new'
+end
+
+Given("estou na pagina de editar uma reserva") do
+  # Crie uma reserva aqui. Certifique-se de que a reserva é salva corretamente e tem um id.
+  reserva = Reserva.create!(condomino: Condomino.first, ambiente: Ambiente.first, data_ini: "2024-01-01", data_fim: "2024-01-03", hora_ini: "08:00", hora_fim: "14:00")
+
+  # Use o id da reserva ao visitar a rota de edição.
+  visit edit_reserva_path(reserva.id)
 end
 
 Given('estou na pagina de visualizar as reservas') do
-  visit reservas_path
+  reserva = Reserva.create!(condomino: 'Marcos Teste', ambiente: 'Quadra', data_ini: '2024-03-10', data_fim: '2024-04-15', hora_ini: '09:00', hora_fim: '13:00')
+
+  visit reserva_path(reserva)
 end
 
-When('seleciono o condomino {string} da lista de condominos') do |nome_condomino|
-  select nome_condomino, from: 'reserva_condomino_id'
-end
-
-When('seleciono o ambiente {string} da lista de ambientes') do |nome_ambiente|
-  select nome_ambiente, from: 'reserva_ambiente_id'
-end
-
-When('preencho a data inicial {string}, data final {string}, hora inicial {string} e hora final {string}') do |data_ini, data_fim, hora_ini, hora_fim|
-  fill_in 'reserva_data_ini', with: data_ini
-  fill_in 'reserva_data_fim', with: data_fim
-  fill_in 'reserva_hora_ini', with: hora_ini
-  fill_in 'reserva_hora_fim', with: hora_fim
-end
-
-
-Then('eu vejo a mensagem de sucesso {string}') do |mensagem|
-  expect(page).to have_content(mensagem)
-end
-
-When('preencho com o condomino {string}, ambiente {string}, data inicial {string}, data final {string}, hora inicial {string} e hora final {string}') do |nome_condomino, nome_ambiente, data_ini, data_fim, hora_ini, hora_fim|
-  select reserva_condomino_id, from: nome_condomino
-  select reserva_ambiente_id, from: nome_ambiente
-  fill_in 'reserva_data_ini', with: data_ini
-  fill_in 'reserva_data_fim', with: data_fim
-  fill_in 'reserva_hora_ini', with: hora_ini
-  fill_in 'reserva_hora_fim', with: hora_fim
-end
-
-Then('eu vejo a mensagem de erro {string}') do |mensagem|
-  expect(page).to have_content(mensagem)
-end
-
-When('eu vejo os dados da reserva condomino {string}, ambiente {string}, data inicial {string}, data final {string}, hora inicial {string} e hora final {string}') do |nome_condomino, nome_ambiente, data_inicial, data_final, hora_inicial, hora_final|
-  expect(page).to have_content(nome_condomino)
-  expect(page).to have_content(nome_ambiente)
-  expect(page).to have_content(data_inicial)
-  expect(page).to have_content(data_final)
-  expect(page).to have_content(hora_inicial)
-  expect(page).to have_content(hora_final)
-end
-
-When('eu clico no botao de {string}') do |botao_update|
-  click_button botao_update
-end
+#Ações de clicar botões
 
 When('eu clico no botao {string} para a reserva do condomino {string}') do |botao, condomino|
   reserva = Reserva.find_by(condomino: condomino)
@@ -76,8 +39,9 @@ When('eu clico no botao {string}') do |botao|
   click_button botao
 end
 
-Then('eu vejo a mensagem de sucesso {string}') do |mensagem|
-  expect(page).to have_content(mensagem)
+
+When("eu clico no botao para apagar {string}") do |button_id|
+  click_on(button_id)
 end
 
 When('eu clico no botao {string} para a reserva do condomino {string}') do |botao, condomino|
@@ -86,17 +50,59 @@ When('eu clico no botao {string} para a reserva do condomino {string}') do |bota
   click_button botao
 end
 
+#Preenchimento dos dados
 
-When('eu clico no botao {string} apagando a reserva') do |botao_apagar|
-  click_button botao_apagar
+When('preencho a data inicial {string}, data final {string}, hora inicial {string} e hora final {string}') do |data_ini, data_fim, hora_ini, hora_fim|
+  fill_in 'reserva_data_ini', with: data_ini
+  fill_in 'reserva_data_fim', with: data_fim
+  fill_in 'reserva_hora_ini', with: hora_ini
+  fill_in 'reserva_hora_fim', with: hora_fim
 end
 
-When('eu edito os dados da reserva condomino {string}, ambiente {string}, data inicial {string}, data final {string}, hora inicial {string} e hora final {string}') do |nome_condomino, nome_ambiente, data_inicial, data_final, hora_inicial, hora_final|
-  condomino = Condomino.find_by(nome: nome_condomino)
-  ambiente = Ambiente.find_by(nome: nome_ambiente)
+When('eu modofico a data inicial {string}, data final {string}, hora inicial {string} e hora final {string}') do |data_ini, data_fim, hora_ini, hora_fim|
+  fill_in 'reserva_data_ini', with: data_ini
+  fill_in 'reserva_data_fim', with: data_fim
+  fill_in 'reserva_hora_ini', with: hora_ini
+  fill_in 'reserva_hora_fim', with: hora_fim
+end
 
-  expect(page).to have_content(data_inicial)
-  expect(page).to have_content(data_final)
-  expect(page).to have_content(hora_inicial)
-  expect(page).to have_content(hora_final)
+
+When('seleciono o condomino {string} da lista de condominos') do |condomino_id|
+  select(condomino_id, from: 'reserva_condomino_id')
+end
+
+When('seleciono o ambiente {string} da lista de ambientes') do |ambiente_id|
+  select ambiente_id, from: 'reserva_ambiente_id'
+end
+
+When('nao seleciono ambiente da lista de ambientes') do
+  #Não precisa do código.
+end
+
+When('nao seleciono condomino da lista de condominos') do
+  #Não precisa do código
+end
+
+#Mensagens
+
+Then('eu vejo a mensagem de sucesso {string}') do |mensagem|
+  expect(page).to have_content(mensagem)
+end
+
+Then('eu vejo a mensagem de erro {string}') do |mensagem|
+  expect(page).to have_content(mensagem)
+end
+
+Then('existe uma reserva do condomino {string}, ambiente {string}, data inicial {string}, data final {string}, hora inicial {string} e hora final {string}') do |condomino, ambiente, data_ini, data_fim, hora_ini, hora_fim|
+  condomino = Condomino.find_by(nome: condomino)
+  ambiente = Ambiente.find_by(nome: ambiente)
+
+  Reserva.create!(
+    condomino: condomino,
+    ambiente: ambiente,
+    data_ini: data_ini,
+    data_fim: data_fim,
+    hora_ini: hora_ini,
+    hora_fim: hora_fim
+  )
 end

@@ -29,6 +29,7 @@ Feature: gerenciamento de condomino
   
   Scenario: apagar cadastro de condomino
     Given estou na pagina de visualizar condomino
-    When eu clico no botao de excluir
+    When clico no botao mostrar consulta
+    And eu clico no botao de excluir
     Then vejo a mensagem 'Condomino was successfully destroyed.' confirmando a exclusao
     And o condomino com nome 'lucas melo' não deve estar mais listado  

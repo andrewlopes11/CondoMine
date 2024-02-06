@@ -22,8 +22,6 @@ Given('estou na pagina de visualizar condomino') do
 end
 
 
-
-
 #clicar nos botoes
 When('eu clico no botao create condomino') do
   click_button "Create Condomino"
@@ -39,7 +37,6 @@ end
 
 Then("o condomino com nome {string} não deve estar mais listado") do |nome|
   expect(page).to_not have_content(nome)
-  
 end
 
 
