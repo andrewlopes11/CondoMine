@@ -29,7 +29,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_02_191656) do
   create_table "reservas", force: :cascade do |t|
     t.date "data_ini"
     t.date "data_fim"
-    t.string "status"
+    t.time "hora_ini"
+    t.time "hora_fim"
     t.integer "condomino_id", null: false
     t.integer "ambiente_id", null: false
     t.datetime "created_at", null: false

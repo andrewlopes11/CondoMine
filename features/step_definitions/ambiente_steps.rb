@@ -31,6 +31,11 @@ When("eu clico no botao update ambiente") do
   click_button "Update Ambiente"
 end
 
+When("eu clico no botao destroy this ambiente") do
+  click_button "Destroy this ambiente"
+end
+
+
 # preenchimento de dados
 
 When("eu preencho nome {string}, tipo {string}")  do |nome, tipo|
@@ -38,9 +43,6 @@ When("eu preencho nome {string}, tipo {string}")  do |nome, tipo|
   fill_in 'ambiente[tipo]', :with => tipo
 end
 
-When("eu clico no botao destroy this ambiente") do
-  click_button "Destroy this ambiente"
-end
 
 #mensagens
 

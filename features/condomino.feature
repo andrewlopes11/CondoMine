@@ -11,7 +11,7 @@ Feature: gerenciamento de condomino
   
   Scenario: cadastrar novo condomino corretamente
     Given estou na pagina de cadastrar condomino
-    When eu preencho nome 'rafael', cpf '12345678910', contato 'blablabla@blablabla.com'
+    When eu preencho nome 'Rafael', cpf '12345678910', contato 'blablabla@blablabla.com'
     And eu clico no botao create condomino
     Then vejo a mensagem 'Condomino was successfully created.' confirmando que condomino foi cadastrado corretamente
 
@@ -29,6 +29,7 @@ Feature: gerenciamento de condomino
   
   Scenario: apagar cadastro de condomino
     Given estou na pagina de visualizar condomino
-    When eu clico no botao de excluir
+    When clico no botao mostrar consulta
+    And eu clico no botao de excluir
     Then vejo a mensagem 'Condomino was successfully destroyed.' confirmando a exclusao
     And o condomino com nome 'lucas melo' não deve estar mais listado  
