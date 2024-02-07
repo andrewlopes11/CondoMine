@@ -6,7 +6,7 @@ end
 
 Given('estou na pagina de editar cadastro de condomino') do
   #partindo da ideia de que para editar um cadastro deve ter um cadastro, vamos primeiro criar para depois acessar o cadastro e realizar a alteracao
-  condomino = Condomino.create(nome: 'lucas melo', cpf: '12345678900', contato: 'teste@gmail.com') 
+  condomino = Condomino.create(nome: 'lucas melo', cpf: '12345678900', contato: 'teste@gmail.com')
 
   visit edit_condomino_path(condomino)
   expect(page).to have_current_path(edit_condomino_path(condomino))
@@ -15,7 +15,7 @@ end
 
 Given('estou na pagina de visualizar condomino') do
   #partindo da ideia de que para editar um cadastro deve ter um cadastro, vamos primeiro criar para depois acessar o cadastro e realizar a alteracao
-  condomino = Condomino.create(nome: 'lucas melo', cpf: '12345678900', contato: 'teste@gmail.com') 
+  condomino = Condomino.create(nome: 'lucas melo', cpf: '12345678900', contato: 'teste@gmail.com')
 
   visit condomino_path(condomino)
   expect(page).to have_current_path(condomino_path(condomino))
@@ -71,4 +71,3 @@ end
 Then('vejo a mensagem {string} confirmando a exclusao') do |mensagem|
   expect(page).to have_content(mensagem)
 end
-
