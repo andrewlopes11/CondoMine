@@ -5,10 +5,10 @@ Feature: gerenciamento de condomino
 
   Scenario: cadastrar condomino com nome vazio
     Given estou na pagina de cadastrar condomino
-    When eu preencho nome '', cpf '12345678900', contato 'teste@gmail.com' 
+    When eu preencho nome '', cpf '12345678900', contato 'teste@gmail.com'
     And eu clico no botao create condomino
     Then vejo a mensagem "Nome can't be blank" informando que o nome nao pode ser vazio
-  
+
   Scenario: cadastrar novo condomino corretamente
     Given estou na pagina de cadastrar condomino
     When eu preencho nome 'Rafael', cpf '12345678910', contato 'blablabla@blablabla.com'
@@ -26,10 +26,9 @@ Feature: gerenciamento de condomino
     When eu preencho nome 'eduardo', cpf '12345678900', contato 'teste@gmail.com'
     And eu clico no botao update Condomino
     Then vejo a mensagem 'Condomino was successfully updated.' indicando que o cadastro foi atualizado
-  
+
   Scenario: apagar cadastro de condomino
     Given estou na pagina de visualizar condomino
-    When clico no botao mostrar consulta
-    And eu clico no botao de excluir
+    When eu clico no botao de excluir
     Then vejo a mensagem 'Condomino was successfully destroyed.' confirmando a exclusao
-    And o condomino com nome 'lucas melo' não deve estar mais listado  
+    And o condomino com nome 'lucas melo' não deve estar mais listado

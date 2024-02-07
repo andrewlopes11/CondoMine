@@ -17,7 +17,7 @@ class AmbienteTest < ActiveSupport::TestCase
   end
 
   test "salvar ambiente corretamente" do
-    ambiente = ambiente.new(nome: "Quadra", tipo: "Poliesportiva")
+    ambiente = Ambiente.new(nome: "Quadra", tipo: "Poliesportiva")
     assert ambiente.save
   end
 end
