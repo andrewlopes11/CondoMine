@@ -2,10 +2,10 @@ class Item < ApplicationRecord
   belongs_to :ambiente
 
   validates :nome, presence: true, format: { with: /\A[^0-9]+\z/, message: "can't have numbers" }, length: {minimum: 3}
-  validates :tipo, presence: true, format: { with: /\A[^0-9]+\z/, message: "can't have numbers" }, length: {minimum: 5}
-  validates :estado, presence: true, format: { with: /\A[^0-9]+\z/, message: "can't have numbers" }, length: {minimum: 5}
+  validates :tipo, presence: true, format: { with: /\A[^0-9]+\z/, message: "can't have numbers" }, length: {minimum: 3}
+  validates :estado, presence: true, format: { with: /\A[^0-9]+\z/, message: "can't have numbers" }, length: {minimum: 3}
 
-  validates :data_entrada, presence: { message: "A data de entrada deve ser fornecida" }
+  validates :data_entrada, presence: { message: "deve ser fornecida" }
   validate :data_entrada_nao_posterior_a_hoje
 
   private
