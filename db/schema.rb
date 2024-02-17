@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_13_174442) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_17_185852) do
   create_table "ambientes", force: :cascade do |t|
     t.string "nome"
     t.string "tipo"
@@ -22,6 +22,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_13_174442) do
     t.string "nome"
     t.string "cpf"
     t.string "contato"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "funcionarios", force: :cascade do |t|
+    t.string "nome"
+    t.string "cpf"
+    t.string "funcao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,6 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_13_174442) do
     t.date "data_fim"
     t.time "hora_ini"
     t.time "hora_fim"
+    t.string "status"
     t.integer "condomino_id", null: false
     t.integer "ambiente_id", null: false
     t.datetime "created_at", null: false
