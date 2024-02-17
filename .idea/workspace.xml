@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ba47040-bc67-46f2-839a-ef11644b86d3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/rubyonrails.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/rubyonrails.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/test.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db/test.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/models/funcionario_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/models/funcionario_test.rb" afterDir="false" />
-    </list>
+    <list default="true" id="3ba47040-bc67-46f2-839a-ef11644b86d3" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -240,7 +236,7 @@
       <workItem from="1706659123794" duration="5056000" />
       <workItem from="1707448314880" duration="341000" />
       <workItem from="1707448675147" duration="69000" />
-      <workItem from="1708195707863" duration="5198000" />
+      <workItem from="1708195707863" duration="5515000" />
     </task>
     <servers />
   </component>
