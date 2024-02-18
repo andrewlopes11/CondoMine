@@ -1,17 +1,62 @@
-<p style="color: green"><%= notice %></p>
+<%= stylesheet_link_tag 'paginationIndex' %>
 
-<h1>Funcionarios</h1>
+<div class="container-view">
+    
+    <div class="container-message">
+      <p style="color: green"><%= notice %></p> 
+    </div>
 
-<div id="funcionarios">
-  <% @funcionarios.each do |funcionario| %>
-    <%= render funcionario %>
-    <p>
-      <%= link_to "Show this funcionario", funcionario %>
-    </p>
-  <% end %>
+    <div class="container-tittle">
+      <h1>Funcionarios</h1>
+    </div>
+    
+
+    <div class="container-buttons">
+    
+      <%= link_to "Voltar", "/" %>
+
+      <%= link_to "Novo funcionario", new_funcionario_path %>
+    </div>
+
+    <div class="container-lista">
+
+      <div class="box-list">
+        <div class="header-list">
+            <div>
+              <strong>NOME</strong>  
+            </div>
+            <div>
+             <strong>TIPO</strong>     
+            </div>
+            <div>
+             <strong>FUNÇÃO</strong>     
+            </div>
+            <div>
+              
+            </div>
+
+        </div>
+        <div class="body-list">
+          <% @funcionarios.each do |funcionario| %>
+            <div class="registro">
+              <div>
+                <%= funcionario.nome %>
+              </div>
+              <div>
+                <%= funcionario.cpf %>
+              </div>
+              <div>
+                <%= funcionario.funcao %>
+              </div>
+              <div>
+                <%= link_to "Visualizar funcionario", funcionario %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
 </div>
 
-<%= link_to "New funcionario", new_funcionario_path %>
-<div>
-    <%= link_to "Back to home", "/" %>
-</div>
+
+
